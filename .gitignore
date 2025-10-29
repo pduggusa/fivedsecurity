@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+
+# Local cache (patterns fetched from Central Brain)
+.dredd/
+incidents/*.json
+
+# Credentials
+credentials.json
+oauth-tokens.json
+
+# Evidence (can be large)
+evidence/virustotal/*.json
+evidence/cloudflare/*.json

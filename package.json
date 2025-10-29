@@ -1,0 +1,45 @@
+{
+  "name": "@fivedsecurity/cli",
+  "version": "1.0.0",
+  "description": "Judge Dredd 5D Truth Verification - Autonomous Code Governance",
+  "main": "src/verifier/FiveDVerifier.js",
+  "bin": {
+    "dredd": "./cli/index.js"
+  },
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "node api/server.js",
+    "test": "echo 'Tests coming soon' && exit 0",
+    "cli": "node cli/index.js"
+  },
+  "keywords": [
+    "judge-dredd",
+    "5d-verification",
+    "truth-verification",
+    "code-governance",
+    "soc2",
+    "compliance",
+    "epistemic-humility"
+  ],
+  "author": "Patrick Duggan <patrick@dugganusa.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pduggusa/fivedsecurity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pduggusa/fivedsecurity/issues"
+  },
+  "homepage": "https://fivedsecurity.com",
+  "dependencies": {
+    "express": "^4.21.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

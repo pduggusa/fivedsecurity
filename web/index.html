@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judge Dredd 5D - Truth Verification System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .metrics {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .metric-row:last-child {
+      border-bottom: none;
+    }
+
+    .metric-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .metric-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .law {
+      background: rgba(0, 0, 0, 0.2);
+      border-left: 4px solid #fbbf24;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .law-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fbbf24;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #667eea;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .status {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    #health-status {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    #correlation {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚖️ Judge Dredd 5D</h1>
+    <p class="subtitle">Truth Verification with 95% Epistemic Humility</p>
+
+    <div class="metrics" id="metrics">
+      <div class="metric-row">
+        <span class="metric-name">🔄 Commit Compliance</span>
+        <span class="metric-value" id="dim1">--</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-name">🧠 Corpus Alignment</span>
+        <span class="metric-value" id="dim2">--</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-name">📊 Production Evidence</span>
+        <span class="metric-value" id="dim3">--</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-name">⏰ Temporal Decay</span>
+        <span class="metric-value" id="dim4">--</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-name">💰 Financial Efficiency</span>
+        <span class="metric-value" id="dim5">--</span>
+      </div>
+      <div class="metric-row" style="border-top: 2px solid rgba(255, 255, 255, 0.3); margin-top: 1rem; padding-top: 1rem;">
+        <span class="metric-name">🔗 Strange Loop Correlation</span>
+        <span class="metric-value" id="correlation">--</span>
+      </div>
+    </div>
+
+    <div class="law">
+      <div class="law-title">The 95% Epistemic Humility Law</div>
+      <p>No claim shall exceed 95% confidence. 5% bullshit is guaranteed. All dimensions must agree within 10 points (Gödel compliance).</p>
+    </div>
+
+    <div class="buttons">
+      <a href="https://github.com/pduggusa/fivedsecurity" class="btn btn-primary" target="_blank">
+        📚 Documentation
+      </a>
+      <a href="/health" class="btn btn-secondary" target="_blank">
+        📊 API Health
+      </a>
+    </div>
+
+    <div class="status">
+      Status: <span id="health-status">Loading...</span><br>
+      Central Brain: <span id="central-brain">--</span>
+    </div>
+  </div>
+
+  <script>
+    // Fetch health data
+    async function updateHealth() {
+      try {
+        const response = await fetch('/health');
+        const data = await response.json();
+
+        document.getElementById('health-status').textContent = data.status.toUpperCase();
+        document.getElementById('health-status').style.color = data.status === 'healthy' ? '#10b981' : '#ef4444';
+
+        // Update dimensions
+        document.getElementById('dim1').textContent = `${data.fiveD.dimension1.score}%`;
+        document.getElementById('dim2').textContent = `${data.fiveD.dimension2.score}%`;
+        document.getElementById('dim3').textContent = `${data.fiveD.dimension3.score}%`;
+        document.getElementById('dim4').textContent = `${data.fiveD.dimension4.score}%`;
+        document.getElementById('dim5').textContent = `${data.fiveD.dimension5.score}%`;
+        document.getElementById('correlation').textContent = `${data.fiveD.correlation}%`;
+
+        // Update Central Brain status
+        const cbStatus = data.centralBrain.enabled ? '✅ Connected' : '⚠️ Disabled';
+        document.getElementById('central-brain').textContent = cbStatus;
+
+      } catch (error) {
+        document.getElementById('health-status').textContent = 'ERROR';
+        document.getElementById('health-status').style.color = '#ef4444';
+        console.error('Health check failed:', error);
+      }
+    }
+
+    // Update on load
+    updateHealth();
+
+    // Refresh every 60 seconds
+    setInterval(updateHealth, 60000);
+  </script>
+</body>
+</html>
